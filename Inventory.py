@@ -1,6 +1,6 @@
 class Inventory:
     def __init__(self):
-        self.items = ["test1", "test2", "test3"]
+        self.items = ["test1", "test2", "test3", "money"]
 
     # Binary search through inventory
     def search_inventory(self, item):
@@ -18,5 +18,8 @@ class Inventory:
             else:
                 return midpoint
 
+    def add_item(self, new_item):
+        self.items.append(new_item)
 
-
+    def remove_item(self, removed_item):
+        self.items.remove(removed_item)

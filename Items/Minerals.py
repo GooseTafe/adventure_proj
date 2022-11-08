@@ -1,3 +1,3 @@
-class Cheese:
+class Minerals:
     def __init__(self):
-        self.description = ""
+        self.description = "certain type of rock that can be used in cooking"

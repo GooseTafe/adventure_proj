@@ -1,4 +1,12 @@
-class Mountain:
+from Locations.BaseLocation import BaseLocation
+from Items.Key import Key
+
+
+class Mountain(BaseLocation):
     def __init__(self):
-        self.description = ""
-        self.location = None # TODO: add specific location class here
+        self.character = None
+        self.description = "A perilous mountain that reaches to the heavens "
+        self.item = Key()
+
+    def give_summary(self):
+        pass

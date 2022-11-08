@@ -2,10 +2,10 @@ from Locations.BaseLocation import BaseLocation
 from Characters.Farmer import Farmer
 
 
-class Village(BaseLocation):
+class WheatField(BaseLocation):
     def __init__(self):
+        self.description = "A sea of golden wheat expanding across a large area of the plains"
         self.character = Farmer()
-        self.description = "a quiet village where Gilbert lives"
 
     def give_summary(self):
         pass
