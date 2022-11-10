@@ -1,3 +1,9 @@
-class Cheese:
+from BaseItem import BaseItem
+
+
+class Cheese(BaseItem):
     def __init__(self):
-        self.description = ""
+        super().__init__()
+        self.name = "cheese"
+        self.description = "Cheese; the creamiest of cheeses that melts in your mouth"
+        self.used = False

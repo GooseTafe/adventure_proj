@@ -6,9 +6,9 @@ class BaseCharacter(ABC):
     def __init__(self):
         self.name = "character name"
         self.description = "character description"
-        self.items = []
+        self.items = None
         self.life = None
         self.condition = False
 
-    def prompts(self):
+    def prompts(self, bag):
         pass

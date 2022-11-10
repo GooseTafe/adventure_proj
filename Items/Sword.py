@@ -1,6 +1,10 @@
-class Sword:
+from BaseItem import BaseItem
+
+
+class Sword(BaseItem):
     def __init__(self):
-        self.description = "A sharp iron sword the lengh of an arm, used for attacking foes"
-        self.life_granted = 1
+        self.name = "sword"
+        self.description = "Sword; A sharp iron sword the length of an arm, used for attacking foes"
+        self.equip = False
         self.damage = None
 

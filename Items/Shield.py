@@ -1,4 +1,8 @@
-class Shield:
+from BaseItem import BaseItem
+
+
+class Shield(BaseItem):
     def __init__(self):
-        self.description = "a wooden shield, used for defending"
-        self.life_granted = 2
+        self.name = "shield"
+        self.description = "Shield; a wooden shield, used for defending"
+        self.equip = False
