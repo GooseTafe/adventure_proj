@@ -1,6 +1,7 @@
 from BaseItem import BaseItem
 
 
+# Minerals used to make the sandwich
 class Minerals(BaseItem):
     def __init__(self):
         super().__init__()

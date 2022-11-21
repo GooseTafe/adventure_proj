@@ -1,8 +1,11 @@
 from time import sleep
 from typing import Union
 
+
 IS_DEV = True
 
+
+# Creates a delayed print output
 def sprint(strs: Union[str, list[str]]):
     if not isinstance(strs, list):
         strs = [strs]

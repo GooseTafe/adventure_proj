@@ -2,6 +2,8 @@ from Characters.BaseCharacter import BaseCharacter
 from Items.Shield import Shield
 
 
+# Grandpa found in the village location
+# Purpose is to provide player with information and give the shield item
 class Grandpa(BaseCharacter):
     def __init__(self):
         self.name = "grandpa"
@@ -10,6 +12,7 @@ class Grandpa(BaseCharacter):
         self.life = None
         self.condition = False
 
+    # The Dialog and interactions for Grandpa
     def prompts(self, bag):
         adventurer_bag = bag
         exiter = True

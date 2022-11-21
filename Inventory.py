@@ -1,6 +1,7 @@
+# inventory class that houses the players items
 class Inventory:
     def __init__(self):
-        self.items = ["test1", "test2", "test3", "money"]
+        self.items = []
 
     # Binary search through inventory
     def search_inventory(self, item):
@@ -18,8 +19,10 @@ class Inventory:
             else:
                 return midpoint
 
+    # add an item to the inventory
     def add_item(self, new_item):
         self.items.append(new_item)
 
+    # remove an item from the inventory
     def remove_item(self, removed_item):
         self.items.remove(removed_item)

@@ -1,9 +1,10 @@
 from Items.Sandwich_Items.Cheese import Cheese
-from Items import Money
+from Items.Money import Money
 from Characters.BaseCharacter import BaseCharacter
-from Characters.Adventurer import Adventurer
 
 
+# The Farmer that is found in the wheatfields location
+# Purpose is to provide the cheese item
 class Farmer(BaseCharacter):
     def __init__(self):
         super().__init__()
@@ -13,6 +14,7 @@ class Farmer(BaseCharacter):
         self.life = 3
         self.condition = False
 
+    # The Dialog and interactions for the farmer
     def prompts(self, bag):
         adventurer_bag = bag
         exiter = True
@@ -39,3 +41,4 @@ class Farmer(BaseCharacter):
                 exiter = False
             else:
                 print("invalid choice, please enter: y = yes | n = no")
+                choice = input("> ")

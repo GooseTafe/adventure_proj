@@ -1,6 +1,7 @@
 from BaseItem import BaseItem
 
 
+# Vegetables used to make the sandwich
 class Vegetables(BaseItem):
     def __init__(self):
         self.name = "vegetables"

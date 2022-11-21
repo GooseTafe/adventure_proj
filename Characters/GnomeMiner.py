@@ -2,6 +2,8 @@ from Items.Sandwich_Items.Minerals import Minerals
 from Characters.BaseCharacter import BaseCharacter
 
 
+# Character Gnome Miner found in the Cave location
+# Purpose is to give player minerals on task completion
 class GnomeMiner(BaseCharacter):
     def __init__(self):
         super().__init__()
@@ -12,6 +14,7 @@ class GnomeMiner(BaseCharacter):
         self.life = 3
         self.condition = False
 
+    # The Dialog and interactions for the Gnome Miner
     def prompts(self, bag):
         adventurer_bag = bag
         print("Gnome Miner: HOW DID YOU GET IN HERE? WHO ARE YOU? WHAT DO YOU WANT?")

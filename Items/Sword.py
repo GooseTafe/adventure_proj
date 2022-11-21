@@ -1,6 +1,7 @@
 from BaseItem import BaseItem
 
 
+# Used to inflict greater damage on attackers
 class Sword(BaseItem):
     def __init__(self):
         self.name = "sword"
