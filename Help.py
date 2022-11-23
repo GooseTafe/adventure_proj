@@ -20,6 +20,8 @@ def help_printout():
     > scan
     search the area for items
     > search area
+    store an item
+    > store [item]
     
     INTERACTION:
     talk to a character

@@ -8,6 +8,7 @@ class Clearing(BaseLocation):
         super().__init__()
         self.name = "Clearing"
         self.character = KingBoar()
-        self.description = "a clearing in the forest where light is shining through the trees"
+        self.description = "a clearing in the forest where light is shining through the trees, on the other side of the" \
+                           f"clearing the {self.character.name} can be seen"
         self.item = None
         self.entrances = {}

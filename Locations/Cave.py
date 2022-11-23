@@ -5,8 +5,5 @@ from Characters.GnomeMiner import GnomeMiner
 class Cave(BaseLocation):
     def __init__(self):
         self.name = "Cave"
-        self.description = "A cave in the mountain, it does not look naturally made"
         self.character = GnomeMiner()
-
-    def give_summary(self):
-        pass
+        self.description = f"A cave in the mountain, it does not look naturally made, but it looks like there is a {self.character.name}"

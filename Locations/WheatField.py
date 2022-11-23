@@ -3,13 +3,13 @@ from Characters.Farmer import Farmer
 from Items.Sandwich_Items.Wheat import Wheat
 
 
-# Wheatfield where the player can find the Farmer
+# Wheat field where the player can find the Farmer
 class WheatField(BaseLocation):
     def __init__(self):
+        super().__init__()
         self.name = "WheatField"
-        self.description = "A sea of golden wheat expanding across a large area of the plains"
         self.character = Farmer()
-        self.item = Wheat()
+        self.description = f"""A sea of golden wheat expanding across a large area of the plains.
+                           Tending to the wheat field is the {self.character.name}"""
 
-    def give_summary(self):
-        pass
+        self.item = Wheat()

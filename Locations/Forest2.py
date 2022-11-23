@@ -7,5 +7,5 @@ class Forest2(BaseLocation):
     def __init__(self):
         self.name = "Forest2"
         self.character = None
-        self.description = "lush green trees everywhere again"
+        self.description = "Deeper into the forest where it is darker and denser than before"
         self.item = Vegetables()

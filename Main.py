@@ -6,7 +6,11 @@ from util import sprint
 # what initiates the game by running game coordinator
 def main():
     coordinator = GameCoordinator()
-
+    print("""
+    ================================================
+            GILBERT AND THE PERFECT SANDWICH
+    ================================================
+    """)
     sprint(
         """The day was warm and sunny in the village.
 In one of the village house's lived an adventurer 
