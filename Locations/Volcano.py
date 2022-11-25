@@ -7,7 +7,7 @@ class Volcano(BaseLocation):
         super().__init__()
         self.name = "Volcano"
         self.character = None
-        self.description = "Smaller than the mountain, but more dangerous as lava flows and spews out constantly, be careful"
-
-    def give_summary(self):
-        pass
+        self.description = """Smaller than the mountain, but more dangerous as lava flows and spews out constantly, be careful.
+The only exits are North and West"""
+        self.exits = {'n', 'w'}
+        self.visited = False

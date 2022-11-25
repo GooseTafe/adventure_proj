@@ -1,5 +1,6 @@
 from abc import abstractmethod, ABC
 
+
 # What all character class skeletons are based on
 class BaseCharacter(ABC):
 

@@ -6,11 +6,14 @@ from Items.Shield import Shield
 # Purpose is to provide player with information and give the shield item
 class Grandpa(BaseCharacter):
     def __init__(self):
+        super().__init__()
         self.name = "grandpa"
         self.description = "This is Gilbert's grandfather, he will know details about where to find certain items"
         self.items = Shield()
         self.life = None
         self.condition = False
+        self.enemy = False
+        self.dead = False
 
     # The Dialog and interactions for Grandpa
     def prompts(self, bag):

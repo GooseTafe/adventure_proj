@@ -2,6 +2,7 @@
 class Inventory:
     def __init__(self):
         self.items = []
+        self.money = 0
 
     # Binary search through inventory
     def search_inventory(self, item):
@@ -17,7 +18,10 @@ class Inventory:
             elif midpoint < item:
                 start = middle + 1
             else:
-                return midpoint
+                if midpoint == "money":
+                    return f"Gilbert has {self.money} coins"
+                else:
+                    return midpoint
 
     # add an item to the inventory
     def add_item(self, new_item):

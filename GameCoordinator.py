@@ -1,4 +1,6 @@
-from Items.Sword import Sword
+import os
+import sys
+
 from Locations import *
 from Characters.Adventurer import Adventurer
 from random import randint
@@ -16,8 +18,20 @@ from Items.Sandwich_Items.Minerals import Minerals
 from Items.Sandwich_Items.Vegetables import Vegetables
 from Items.Sandwich_Items.Wheat import Wheat
 
+
+class HiddenPrint:
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
+
+
 # sets the movement directions
 class MovementAction(Enum):
+    STAY = 0
     WEST = 1
     EAST = 2
     NORTH = 3
@@ -41,6 +55,8 @@ class Coordinate:
             return Coordinate(0, 1)
         if action is MovementAction.SOUTH:
             return Coordinate(0, -1)
+        if action is MovementAction.STAY:
+            return Coordinate(0, 0)
 
     def as_2d_matrix_vec(self) -> tuple[int, int]:
         # reverse the up / down val
@@ -84,10 +100,7 @@ class GameCoordinator:
         ], (6, 3))
 
     # Creates the player map
-    # TODO: add when player visits area map updates with an identifier of current location and where has been travelled
-    def player_map(self, loc_type="?"):
-        loc_type = loc_type
-
+    def player_map(self):
         # top border
         sprint((len(self.locations.locations[0]) * 4 + 5) * "%")
 
@@ -100,6 +113,19 @@ class GameCoordinator:
                 if cell is None:
                     print("____|", end="")
                 else:
+                    # location identifier
+                    has_visited = cell.visited
+                    # if the player is in the current location identify by @
+                    if self.current_loc().name == cell.name:
+                        loc_type = "@"
+                    # if player has not been to an area on the map identify with a ?
+                    elif not has_visited:
+                        loc_type = '?'
+                        self.current_loc().visited = True
+                    # if the player has not visited an area on the map identified with an x
+                    else:
+                        loc_type = "x"
+
                     # first letter of each location
                     print(f"_{cell.name[0]}{loc_type}_|", end="")
             # right side of border
@@ -152,35 +178,53 @@ class GameCoordinator:
 
     # move gilbert by vector = location class
     def move(self, args: list[str]):
+        with HiddenPrint():
+            self.player_map()
         action = Coordinate(0, 0)
         direction = args[0].lower()
         if direction == 'n':
-            sprint("Gilbert decides to move North")
-            action = MovementAction.NORTH
+            if 'n' not in self.current_loc().exits:
+                sprint("That way is blocked try another way")
+                action = MovementAction.STAY
+            else:
+                sprint("Gilbert decides to move North")
+                action = MovementAction.NORTH
         elif direction == 'e':
-            sprint("Gilbert decides to move East")
-            action = MovementAction.EAST
+            if 'e' not in self.current_loc().exits:
+                sprint("That way is blocked try another way")
+                action = MovementAction.STAY
+            else:
+                sprint("Gilbert decides to move East")
+                action = MovementAction.EAST
         elif direction == 's':
-            sprint("Gilbert decides to move South")
-            action = MovementAction.SOUTH
+            if 's' not in self.current_loc().exits:
+                sprint("That way is blocked try another way")
+                action = MovementAction.STAY
+            else:
+                sprint("Gilbert decides to move South")
+                action = MovementAction.SOUTH
         elif direction == 'w':
-            sprint("Gilbert decides to move West")
-            action = MovementAction.WEST
+            if 'w' not in self.current_loc().exits:
+                sprint("That way is blocked try another way")
+                action = MovementAction.STAY
+            else:
+                sprint("Gilbert decides to move West")
+                action = MovementAction.WEST
         else:
-            sprint("direction unknown please choose N,E,S,W direction:")
+            sprint("You cannot go that direction")
             return False
 
         temp_player_pos = tuple(map(sum, zip(self.player_pos, Coordinate.from_movement(action).as_2d_matrix_vec())))
         if self.locations.get_loc_from_point(temp_player_pos) is not None:
             self.player_pos = temp_player_pos
         else:
-            sprint("not a valid direction")
+            sprint("not a valid direction1")
 
     # scan area print area description
     def scan(self):
         sprint(self.locations.get_loc_from_point(self.player_pos).description)
 
-    def look(self, args: list[str] = []):
+    def look(self, args: list[str]):
         try:
             look_obj = args[0].lower()
             character = self.current_loc().character
@@ -323,7 +367,7 @@ class GameCoordinator:
         try:
             food = args[0].lower()
             if food == "sandwich" and self.current_loc().name.lower() == "home":
-                sprint("""Gilbert settles down at the table with his sandwich on a plate
+                sprint("""Gilbert settles down at the table with his sandwich on a plate, his new utensils either side
                 'finally' he thinks, and raises the sandwich to his mouth...
                 ...
                 ...
@@ -344,7 +388,7 @@ class GameCoordinator:
         return True
 
     # attack character
-    def attack(self, args: list[str] = []):
+    def attack(self, args: list[str]):
         try:
             exiter = True
             blocked = False
@@ -361,8 +405,8 @@ class GameCoordinator:
                     sprint("Are you sure you want to attack with your fists and not a weapon?")
                     choice = input("> ")
                     if choice.lower() == 'y':
-                        sprint(f"""Very well, your funeral
-                                Gilbert throws a right hook at {opponent_name}""")
+                        sprint(f"Very well, your funeral")
+                        sprint("Gilbert throws a right hook at {opponent_name}")
                         while exiter:
                             if adventurer_life <= 0:
                                 sprint(f"""Gilbert's life is: {adventurer_life}...

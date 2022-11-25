@@ -22,6 +22,8 @@ def help_printout():
     > search area
     store an item
     > store [item]
+    look at something for a description
+    > look [object/character]
     
     INTERACTION:
     talk to a character
@@ -34,8 +36,8 @@ def help_printout():
     > search bag > [item]
     store an item
     > store [item]
-    open the map
-    > open map
+    open the map (@ = current location, x = discovered, ? = undiscovered)
+    > open map 
     
     GAME SPECIFIC:
     To eat the sandwich

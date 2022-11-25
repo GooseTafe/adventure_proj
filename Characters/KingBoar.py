@@ -15,7 +15,7 @@ class KingBoar(BaseCharacter):
         self.description = "A rare Gigantic Boar, covered in scars and battle wounds, tusks as long as your " \
                            "arm, and as thick as your leg."
         self.items = [Money(), Meat()]
-        self.life = 30
+        self.life = 3
         self.condition = False
         self.enemy = True
         self.dead = False
@@ -74,8 +74,9 @@ class KingBoar(BaseCharacter):
     # adds the loot to the adventurers bag
     def item_drop(self, bag):
         adventurer_bag = bag
-        coins = self.items[0].amount = 5
+        coins = 5
         sprint(f"Gilbert finds {coins} coins and {self.items[1].description}... and adds them to his bag")
         adventurer_bag.add_item(self.items[0].name)
         adventurer_bag.add_item(self.items[1].name)
+        adventurer_bag.money = coins
         return adventurer_bag

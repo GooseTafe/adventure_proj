@@ -16,10 +16,12 @@ class ForgeMaster(BaseCharacter):
         self.name = "forgemaster"
         self.description = """An extremely hairy short stature dwarf dressed in a leather apron, gloves, and metal 
         welding helmet (I wonder how he has not caught on fire yet?) """
-        self.items = [] # TODO: add items that can be found on the Forge Master
-        self.life = 3
+        self.items = [CookingTools()] # TODO: add items that can be found on the Forge Master
+        self.life = None
         self.condition = False
         self.ingredients = [Meat(), Minerals(), Wheat(), Vegetables(), Cheese(), CookingTools()]
+        self.enemy = False
+        self.dead = False
 
     # checks the player inventory to see if all required items have been collected
     # if one item is left out the check fails and lets the player know whats missing
@@ -70,8 +72,11 @@ class ForgeMaster(BaseCharacter):
         Forge Master: Gilbert you say? Well *BUURRPPP* G-Giblert what can i do for you?
         Gilbert inquires into using the Forge Master's mighty forge to create the perfect sandwich.
         Forge Master: sure I'll allow you to use my forge, only if you have the right tools.""")
-        # TODO: search for Minerals in inventory to allow conversation to continue
         if self.inventory_check(adventurer_bag) is True:
             sprint("Forge Master: WOOHOO jolly *BBUURRPP* jolly good, you're free to use whatever you need.")
+            sprint("Forge Master: Oh and here from one fellow sandwich lover to another.")
+            sprint("The Forge Master tosses over what looks like expertly crafted utensils to Gilbert.")
+            sprint(f"{self.items[0].name} has been added to Gilbert's bag")
+            adventurer_bag.add_item(self.items[0].name)
         else:
             sprint("Forge Master: Unfortunately you do not have all the items you need, come back again when you do.")

@@ -11,8 +11,10 @@ class GnomeMiner(BaseCharacter):
         self.description = "Standing at less than 3ft tall, a long white beard, endowed with a miners helmet and " \
                            "torch, and brandishing a well used iron pickaxe. "
         self.items = Minerals()
-        self.life = 3
+        self.life = None
         self.condition = False
+        self.enemy = False
+        self.dead = False
 
     # The Dialog and interactions for the Gnome Miner
     def prompts(self, bag):

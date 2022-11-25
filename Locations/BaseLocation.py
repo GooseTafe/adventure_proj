@@ -7,10 +7,12 @@ from Characters.BaseCharacter import BaseCharacter
 class BaseLocation(ABC):
 
     def __init__(self):
+        self.exits = {}
         self.name = ""
         self.character: typing.Union[BaseCharacter, None] = None
         self.description = "this is a location"
         self.item = None
         self.entrances = {'w'}
+        self.visited = None
 
 
